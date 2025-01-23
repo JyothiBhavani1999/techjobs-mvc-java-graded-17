@@ -11,7 +11,8 @@
   <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
 
   <!-- TODO #1 - Use a loop to display job results in a table. -->
-    <table th:each="job : ${jobs}" class="job-listing" border="1">
+  <div th:fragment="job-list-Fragment">
+  <table th:each="job : ${jobs}" class="job-listing" border="1">
       <tr>
         <td>ID</td>
         <td th:text="${job.id}"></td>
@@ -39,8 +40,10 @@
     </table>
 
   <!-- Fallback message if no jobs are found -->
-  <div th:if="${jobs.size() == 0}">
-    <p>No jobs found.</p>
+    <div th:if="${jobs == null or jobs.size() == 0}">
+      <p>No jobs found.</p>
+    </div>
+
   </div>
 
 </div>
